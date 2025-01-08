@@ -19,7 +19,15 @@ while (true) {
   } else if (input.toLowerCase() === "delete") {
     if (list.length) {
       let index = parseInt(prompt("Enter index of todo to delete"));
-      list.splice(index, 1);
+      while (Number.isNaN(index)) {
+        index = prompt("Enter index of todo to delete");
+      }
+      if (index <= list.length && index.length >= 0) {
+        list.splice(index, 1);
+      } else {
+        console.log("Index doesn't exist");
+        input = prompt("Index doesn't exist\nWhat would you like to do?");
+      }
     } else {
       console.log("Your Todo List is Empty\nNothing to delete");
       input = prompt(
